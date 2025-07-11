@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Card } from "../components/ui/card";
@@ -13,7 +13,7 @@ import {
   Briefcase, GraduationCap, Award, Globe, BookOpen, Trophy
 } from 'lucide-react';
 import { ResumeSectionProps } from '../types/types';
-import type { ResumeData,Language, Certification,Project,VolunteerWork, AwardItem,Experience,Education, CustomSection  } from '../types/types'
+import type { ResumeData, Language, Certification, Project, VolunteerWork, AwardItem, Experience, Education, CustomSection } from '../types/types'
 
 
 
@@ -97,15 +97,17 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
 
   const renderPersonalSection = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <Input placeholder="Full Name" value={resumeData.personalInfo.fullName} onChange={(e) => updatePersonalInfo('fullName', e.target.value)} />
-      <Input placeholder="Email" value={resumeData.personalInfo.email} onChange={(e) => updatePersonalInfo('email', e.target.value)} />
-      <Input placeholder="Phone" value={resumeData.personalInfo.phone} onChange={(e) => updatePersonalInfo('phone', e.target.value)} />
-      <Input placeholder="Location" value={resumeData.personalInfo.location} onChange={(e) => updatePersonalInfo('location', e.target.value)} />
+      <Input className='bg-white text-black' placeholder="Full Name" value={resumeData.personalInfo.fullName} onChange={(e) => updatePersonalInfo('fullName', e.target.value)} />
+      <Input className='bg-white text-black' placeholder="Email" value={resumeData.personalInfo.email} onChange={(e) => updatePersonalInfo('email', e.target.value)} />
+      <Input className='bg-white text-black' placeholder="Phone" value={resumeData.personalInfo.phone} onChange={(e) => updatePersonalInfo('phone', e.target.value)} />
+      <Input className='bg-white text-black' placeholder="Location" value={resumeData.personalInfo.location} onChange={(e) => updatePersonalInfo('location', e.target.value)} />
+    
     </div>
   );
 
   const renderSummarySection = () => (
     <Textarea
+    className='bg-white text-black'
       placeholder="Write your professional summary..."
       rows={4}
       value={resumeData.personalInfo.summary}
@@ -118,12 +120,12 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
       {resumeData.experience.map((exp) => (
         <Card key={exp.id} className="p-4 border-l-4 border-purple-500">
           <div className="grid grid-cols-2 gap-4 mb-2">
-            <Input placeholder="Company" value={exp.company} onChange={(e) => updateExperience(exp.id, 'company', e.target.value)} />
-            <Input placeholder="Position" value={exp.position} onChange={(e) => updateExperience(exp.id, 'position', e.target.value)} />
-            <Input placeholder="Start Date" value={exp.startDate} onChange={(e) => updateExperience(exp.id, 'startDate', e.target.value)} />
-            <Input placeholder="End Date" value={exp.endDate} onChange={(e) => updateExperience(exp.id, 'endDate', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Company" value={exp.company} onChange={(e) => updateExperience(exp.id, 'company', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Position" value={exp.position} onChange={(e) => updateExperience(exp.id, 'position', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Start Date" value={exp.startDate} onChange={(e) => updateExperience(exp.id, 'startDate', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="End Date" value={exp.endDate} onChange={(e) => updateExperience(exp.id, 'endDate', e.target.value)} />
           </div>
-          <Textarea placeholder="Description" rows={3} value={exp.description} onChange={(e) => updateExperience(exp.id, 'description', e.target.value)} />
+          <Textarea className='bg-white text-black' placeholder="Description" rows={3} value={exp.description} onChange={(e) => updateExperience(exp.id, 'description', e.target.value)} />
         </Card>
       ))}
       <Button onClick={addExperience} variant="outline" className="w-full mt-2">
@@ -137,12 +139,12 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
       {resumeData.education.map((edu) => (
         <Card key={edu.id} className="p-4 border-l-4 border-orange-500">
           <div className="grid grid-cols-2 gap-4 mb-2">
-            <Input placeholder="Institution" value={edu.institution} onChange={(e) => updateEducation(edu.id, 'institution', e.target.value)} />
-            <Input placeholder="Degree" value={edu.degree} onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)} />
-            <Input placeholder="Field" value={edu.field} onChange={(e) => updateEducation(edu.id, 'field', e.target.value)} />
-            <Input placeholder="GPA (optional)" value={edu.gpa || ''} onChange={(e) => updateEducation(edu.id, 'gpa', e.target.value)} />
-            <Input placeholder="Start Date" value={edu.startDate} onChange={(e) => updateEducation(edu.id, 'startDate', e.target.value)} />
-            <Input placeholder="End Date" value={edu.endDate} onChange={(e) => updateEducation(edu.id, 'endDate', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Institution" value={edu.institution} onChange={(e) => updateEducation(edu.id, 'institution', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Degree" value={edu.degree} onChange={(e) => updateEducation(edu.id, 'degree', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Field" value={edu.field} onChange={(e) => updateEducation(edu.id, 'field', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="GPA (optional)" value={edu.gpa || ''} onChange={(e) => updateEducation(edu.id, 'gpa', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="Start Date" value={edu.startDate} onChange={(e) => updateEducation(edu.id, 'startDate', e.target.value)} />
+            <Input className='bg-white text-black' placeholder="End Date" value={edu.endDate} onChange={(e) => updateEducation(edu.id, 'endDate', e.target.value)} />
           </div>
         </Card>
       ))}
@@ -155,7 +157,7 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
   const renderSkillsSection = () => (
     <div className="space-y-4">
       <div className="flex gap-2">
-        <Input value={newSkill} onChange={(e) => setNewSkill(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddSkill()} placeholder="e.g. JavaScript" />
+        <Input className='bg-white text-black' value={newSkill} onChange={(e) => setNewSkill(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleAddSkill()} placeholder="e.g. JavaScript" />
         <Button onClick={handleAddSkill}><Plus className="w-4 h-4" /></Button>
       </div>
       <div className="flex flex-wrap gap-2">
@@ -175,21 +177,23 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
         <Card key={lang.id} className="p-4 border-l-4 border-yellow-500">
           <div className="flex justify-between items-start mb-2">
             <div className="grid grid-cols-2 gap-4 flex-1">
-              <Input 
-                placeholder="Language" 
-                value={lang.name} 
-                onChange={(e) => updateLanguage(lang.name, 'name', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Language"
+                value={lang.name}
+                onChange={(e) => updateLanguage(lang.id, 'name', e.target.value)}
               />
-              <Input 
-                placeholder="Level (e.g. Native, Fluent, Intermediate)" 
-                value={lang.level} 
-                onChange={(e) => updateLanguage(lang.level, 'level', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Level (e.g. Native, Fluent, Intermediate)"
+                value={lang.level}
+                onChange={(e) => updateLanguage(lang.id, 'level', e.target.value)}
               />
             </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => removeLanguage(lang.name)}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => removeLanguage(lang.id)} // ✅ Corrected
               className="ml-2"
             >
               <Trash2 className="w-4 h-4" />
@@ -203,36 +207,41 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
     </div>
   );
 
+
   const renderCertificationsSection = () => (
     <div className="space-y-4">
       {resumeData.certifications?.map((cert) => (
         <Card key={cert.id} className="p-4 border-l-4 border-emerald-500">
           <div className="flex justify-between items-start mb-2">
             <div className="grid grid-cols-2 gap-4 flex-1">
-              <Input 
-                placeholder="Certification Name" 
-                value={cert.name  ?? ''} 
-                onChange={(e) => updateCertification(cert.id, 'name', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Certification Name"
+                value={cert.name ?? ''}
+                onChange={(e) => updateCertification(cert.id, 'name', e.target.value)}
               />
-              <Input 
-                placeholder="Issuing Organization" 
-                value={cert.issue  ?? ''} 
-                onChange={(e) => updateCertification(cert.id, 'issuer', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Issuing Organization"
+                value={cert.issuer ?? ''}  // ✅ Corrected field name
+                onChange={(e) => updateCertification(cert.id, 'issuer', e.target.value)}
               />
-              <Input 
-                placeholder="Date Obtained" 
-                value={cert.date  ?? ''} 
-                onChange={(e) => updateCertification(cert.id, 'date', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Date Obtained"
+                value={cert.date ?? ''}
+                onChange={(e) => updateCertification(cert.id, 'date', e.target.value)}
               />
-              <Input 
-                placeholder="Expiry Date (optional)" 
-                value={cert.expiryDate  ?? ''} 
-                onChange={(e) => updateCertification(cert.id, 'expiryDate', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Expiry Date (optional)"
+                value={cert.expiryDate ?? ''}
+                onChange={(e) => updateCertification(cert.id, 'expiryDate', e.target.value)}
               />
             </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => removeCertification(cert.id)}
               className="ml-2"
             >
@@ -253,49 +262,55 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
         <Card key={project.id} className="p-4 border-l-4 border-indigo-500">
           <div className="flex justify-between items-start mb-4">
             <div className="grid grid-cols-2 gap-4 flex-1">
-              <Input 
-                placeholder="Project Name" 
-                value={project.name ?? ''} 
-                onChange={(e) => updateProject(project.id, 'name', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Project Name"
+                value={project.name ?? ''}
+                onChange={(e) => updateProject(project.id, 'name', e.target.value)}
               />
-              <Input 
-                placeholder="Project URL (optional)" 
-                value={project.url ?? ''} 
-                onChange={(e) => updateProject(project.id, 'url', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Project URL (optional)"
+                value={project.url ?? ''}
+                onChange={(e) => updateProject(project.id, 'url', e.target.value)}
               />
-              <Input 
-                placeholder="Start Date (optional)" 
-                value={project.startDate ?? ''} 
-                onChange={(e) => updateProject(project.id, 'startDate', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Start Date (optional)"
+                value={project.startDate ?? ''}
+                onChange={(e) => updateProject(project.id, 'startDate', e.target.value)}
               />
-              <Input 
-                placeholder="End Date (optional)" 
-                value={project.endDate ?? ''} 
-                onChange={(e) => updateProject(project.id, 'endDate', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="End Date (optional)"
+                value={project.endDate ?? ''}
+                onChange={(e) => updateProject(project.id, 'endDate', e.target.value)}
               />
             </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => removeProject(project.id)}
               className="ml-2"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </div>
-          <Textarea 
-            placeholder="Project Description" 
-            rows={3} 
-            value={project.description} 
-            onChange={(e) => updateProject(project.id, 'description', e.target.value)} 
-            className="mb-4"
+          <Textarea
+            className='bg-white text-black mb-4'
+            placeholder="Project Description"
+            rows={3}
+            value={project.description}
+            onChange={(e) => updateProject(project.id, 'description', e.target.value)}
+            
           />
           <div className="space-y-2">
             <div className="flex gap-2">
-              <Input 
-                placeholder="Add technology (e.g. React, Node.js)" 
-                value={newTech} 
-                onChange={(e) => setNewTech(e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Add technology (e.g. React, Node.js)"
+                value={newTech}
+                onChange={(e) => setNewTech(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleAddTechnology(project.id)}
               />
               <Button onClick={() => handleAddTechnology(project.id)}>
@@ -306,9 +321,9 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
               {project.technologies.map((tech) => (
                 <Badge key={tech} variant="outline" className="flex items-center gap-2">
                   {tech}
-                  <X 
-                    className="w-3 h-3 cursor-pointer" 
-                    onClick={() => handleRemoveTechnology(project.id, tech)} 
+                  <X
+                    className="w-3 h-3 cursor-pointer"
+                    onClick={() => handleRemoveTechnology(project.id, tech)}
                   />
                 </Badge>
               ))}
@@ -328,41 +343,46 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
         <Card key={vol.id} className="p-4 border-l-4 border-pink-500">
           <div className="flex justify-between items-start mb-2">
             <div className="grid grid-cols-2 gap-4 flex-1">
-              <Input 
-                placeholder="Organization" 
-                value={vol.organization} 
-                onChange={(e) => updateVolunteer(vol.id, 'organization', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Organization"
+                value={vol.organization}
+                onChange={(e) => updateVolunteer(vol.id, 'organization', e.target.value)}
               />
-              <Input 
-                placeholder="Position/Role" 
-                value={vol.position} 
-                onChange={(e) => updateVolunteer(vol.id, 'position', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Position/Role"
+                value={vol.position}
+                onChange={(e) => updateVolunteer(vol.id, 'position', e.target.value)}
               />
-              <Input 
-                placeholder="Start Date" 
-                value={vol.startDate} 
-                onChange={(e) => updateVolunteer(vol.id, 'startDate', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Start Date"
+                value={vol.startDate}
+                onChange={(e) => updateVolunteer(vol.id, 'startDate', e.target.value)}
               />
-              <Input 
-                placeholder="End Date" 
-                value={vol.endDate} 
-                onChange={(e) => updateVolunteer(vol.id, 'endDate', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="End Date"
+                value={vol.endDate}
+                onChange={(e) => updateVolunteer(vol.id, 'endDate', e.target.value)}
               />
             </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => removeVolunteer(vol.id)}
               className="ml-2"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </div>
-          <Textarea 
-            placeholder="Description of volunteer work" 
-            rows={3} 
-            value={vol.description} 
-            onChange={(e) => updateVolunteer(vol.id, 'description', e.target.value)} 
+          <Textarea
+            className='bg-white text-black'
+            placeholder="Description of volunteer work"
+            rows={3}
+            value={vol.description}
+            onChange={(e) => updateVolunteer(vol.id, 'description', e.target.value)}
           />
         </Card>
       ))}
@@ -378,36 +398,40 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
         <Card key={award.id} className="p-4 border-l-4 border-amber-500">
           <div className="flex justify-between items-start mb-2">
             <div className="grid grid-cols-2 gap-4 flex-1">
-              <Input 
-                placeholder="Award Name" 
-                value={award.name} 
-                onChange={(e) => updateAward(award.id, 'name', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Award Name"
+                value={award.name}
+                onChange={(e) => updateAward(award.id, 'name', e.target.value)}
               />
-              <Input 
-                placeholder="Issuing Organization" 
-                value={award.issuer} 
-                onChange={(e) => updateAward(award.id, 'issuer', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Issuing Organization"
+                value={award.issuer}
+                onChange={(e) => updateAward(award.id, 'issuer', e.target.value)}
               />
-              <Input 
-                placeholder="Date Received" 
-                value={award.date} 
-                onChange={(e) => updateAward(award.id, 'date', e.target.value)} 
+              <Input
+              className='bg-white text-black'
+                placeholder="Date Received"
+                value={award.date}
+                onChange={(e) => updateAward(award.id, 'date', e.target.value)}
               />
             </div>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => removeAward(award.id)}
               className="ml-2"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
           </div>
-          <Textarea 
-            placeholder="Award description (optional)" 
-            rows={2} 
-            value={award.description || ''} 
-            onChange={(e) => updateAward(award.id, 'description', e.target.value)} 
+          <Textarea
+            className='bg-white text-black'
+            placeholder="Award description (optional)"
+            rows={2}
+            value={award.description || ''}
+            onChange={(e) => updateAward(award.id, 'description', e.target.value)}
           />
         </Card>
       ))}
@@ -438,7 +462,7 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
           {getSectionIcon(type)}
-          <h3 className="text-lg font-semibold">{getSectionTitle(type)}</h3>
+          <h3 className="text-lg font-semibold text-black">{getSectionTitle(type)}</h3>
         </div>
         <div {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing p-2">
           <GripVertical className="w-5 h-5 text-gray-400" />
